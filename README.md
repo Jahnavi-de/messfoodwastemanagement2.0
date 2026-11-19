@@ -266,3 +266,6 @@ A small system… that quietly saves **money, food, and resources** every single
 🍽️✨
 
 
+
+## Team
+- Jahnavi Srivastava (Jahnavi-de)
