@@ -262,7 +262,7 @@ This project transforms hostel food management from:
 > to
 > ✅ Smart, optimized, data-driven planning
 
-A small system… that quietly saves **money, food, and resources** every single day..
+A small system… that quietly saves **money, food, and resources** every single day.
 🍽️✨
 
 
