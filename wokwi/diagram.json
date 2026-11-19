@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "author": "Hostel food-waste project",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "micropython-20260406-v1.28.0" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -96, "left": -172, "attrs": { "temperature": "31", "humidity": "62" } },
+    { "type": "wokwi-hx711", "id": "waste", "top": -160, "left": 170, "attrs": { "type": "50kg" } },
+    { "type": "wokwi-hx711", "id": "rice", "top": 110, "left": 170, "attrs": { "type": "50kg" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [] ],
+    [ "dht1:GND", "esp:GND.1", "black", [] ],
+    [ "dht1:SDA", "esp:15", "green", [] ],
+    [ "waste:VCC", "esp:5V", "red", [] ],
+    [ "waste:GND", "esp:GND.2", "black", [] ],
+    [ "waste:DT", "esp:16", "blue", [] ],
+    [ "waste:SCK", "esp:4", "orange", [] ],
+    [ "rice:VCC", "esp:5V", "red", [] ],
+    [ "rice:GND", "esp:GND.3", "black", [] ],
+    [ "rice:DT", "esp:18", "blue", [] ],
+    [ "rice:SCK", "esp:19", "orange", [] ]
+  ],
+  "dependencies": {}
+}

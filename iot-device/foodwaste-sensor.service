@@ -1,0 +1,22 @@
+# systemd service: starts the sensor client at boot and restarts it if it crashes.
+# Install (replace "pi" and the paths if your username / folder differ):
+#   sudo cp foodwaste-sensor.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now foodwaste-sensor
+# Logs:  journalctl -u foodwaste-sensor -f
+
+[Unit]
+Description=Hostel food-waste sensor client
+Wants=network-online.target time-sync.target
+After=network-online.target time-sync.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/foodwaste/iot-device
+ExecStart=/home/pi/foodwaste-venv/bin/python sensor_client.py --config config.json
+Restart=always
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

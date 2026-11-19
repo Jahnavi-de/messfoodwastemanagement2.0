@@ -1,0 +1,21 @@
+# systemd service for the Python backend (Raspberry Pi or Linux server).
+#   sudo cp deploy/foodwaste-backend.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now foodwaste-backend
+#   journalctl -u foodwaste-backend -f
+# Change "pi" and the paths if your username or folder differ.
+
+[Unit]
+Description=Hostel food-waste backend (Flask)
+After=network.target mariadb.service
+Wants=mariadb.service
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/foodwaste/backend
+ExecStart=/home/pi/foodwaste-venv/bin/gunicorn --workers 2 --bind 0.0.0.0:8000 app:app
+Environment=TZ=Asia/Kolkata
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

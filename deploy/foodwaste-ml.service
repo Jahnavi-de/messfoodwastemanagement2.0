@@ -1,0 +1,21 @@
+# systemd service for the ML API (Raspberry Pi or Linux server). Only the backend talks
+# to it, so it listens on 127.0.0.1 (not reachable from other devices).
+#   sudo cp deploy/foodwaste-ml.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now foodwaste-ml
+#   journalctl -u foodwaste-ml -f
+# Change "pi" and the paths if your username or folder differ.
+
+[Unit]
+Description=Hostel food-waste ML API
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/foodwaste/ml-api
+ExecStart=/home/pi/foodwaste-venv/bin/gunicorn --workers 1 --bind 127.0.0.1:5000 app:app
+Environment=TZ=Asia/Kolkata
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

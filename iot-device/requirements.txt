@@ -1,0 +1,6 @@
+# Raspberry Pi sensor client
+requests>=2.28
+# Raspberry Pi 5 only (drop-in replacement for RPi.GPIO, which does not work on the Pi 5):
+# rpi-lgpio
+# Only if you set "driver": "dht_adafruit" for the climate sensor:
+# adafruit-circuitpython-dht

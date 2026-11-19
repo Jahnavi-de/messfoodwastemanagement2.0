@@ -1,0 +1,4 @@
+config.json
+config.json.bak
+readings_queue.db*
+__pycache__/

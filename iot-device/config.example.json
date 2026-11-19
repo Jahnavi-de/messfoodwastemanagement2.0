@@ -1,0 +1,73 @@
+{
+  "server_url": "http://YOUR-SERVER:8000",
+  "device_id": "kitchen-pi-1",
+  "api_key": "PASTE-THE-KEY-PRINTED-BY-manage.py-add-device",
+  "verify_tls": true,
+
+  "sample_interval_s": 5,
+  "upload_interval_s": 30,
+  "ping_interval_s": 60,
+  "batch_size": 200,
+  "queue_db": "readings_queue.db",
+  "max_queue_rows": 200000,
+
+  "meal_windows": {
+    "breakfast": ["05:00", "10:00"],
+    "lunch": ["10:00", "16:00"],
+    "dinner": ["16:00", "24:00"]
+  },
+
+  "scales": [
+    {
+      "name": "waste_bin",
+      "type": "waste_weight",
+      "driver": "hx711",
+      "dout_pin": 5,
+      "sck_pin": 6,
+      "offset": 0,
+      "scale": 1,
+      "min_change_kg": 0.1,
+      "stable_tolerance_kg": 0.05,
+      "stable_samples": 3,
+      "heartbeat_s": 300
+    },
+    {
+      "name": "leftover_pot",
+      "type": "leftover_weight",
+      "driver": "hx711",
+      "dout_pin": 13,
+      "sck_pin": 19,
+      "offset": 0,
+      "scale": 1
+    },
+    {
+      "name": "rice_store",
+      "type": "raw_material_weight",
+      "item": "rice",
+      "driver": "hx711",
+      "dout_pin": 20,
+      "sck_pin": 21,
+      "offset": 0,
+      "scale": 1
+    },
+    {
+      "name": "dal_store",
+      "type": "raw_material_weight",
+      "item": "dal",
+      "driver": "hx711",
+      "dout_pin": 23,
+      "sck_pin": 24,
+      "offset": 0,
+      "scale": 1,
+      "enabled": false
+    }
+  ],
+
+  "climate": {
+    "name": "kitchen_air",
+    "driver": "dht_kernel",
+    "pin": 4,
+    "model": "DHT22",
+    "interval_s": 300
+  }
+}
